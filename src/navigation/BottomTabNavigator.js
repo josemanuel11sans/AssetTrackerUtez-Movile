@@ -2,6 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PerfilScreen from '../screens/PerfilScreen';
 import EdificiosScreen from '../screens/EdificiosScreen';
+import ScannerScreen from '../screens/ScannerScreen';
+import RegistroDeRecursosScreen from '../screens/RegistroDeRecursosScreen';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +20,10 @@ export default function BottomTabNavigator() {
           } else if (route.name === 'Profile') {
             iconName = 'person';
             return <Ionicons name={iconName} size={size} color={color} />;
-          }
+          } else if (route.name === 'Scanner') {
+            iconName = 'barcode-outline';
+            return <Ionicons name={iconName} size={size} color={color} />;
+          } 
         },
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#FFFFFF',
@@ -45,6 +50,11 @@ export default function BottomTabNavigator() {
         },
       })}
     >
+      <Tab.Screen
+        name="Scanner"
+        component={ScannerScreen}
+        options={{ headerShown: false, title: 'Escanear' }}
+      />
       <Tab.Screen
         name="inventarios"
         component={EdificiosScreen}

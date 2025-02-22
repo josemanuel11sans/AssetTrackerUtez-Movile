@@ -10,7 +10,7 @@ export default function StackNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Edificios" component={EdificiosScreen} options={{ headerShown: false, title: "Edificios" }}/>
-            <Stack.Screen name="Espacios" component={EspaciosScreen} options={{ headerShown: false, title: "Espacios" }}/>
+            <Stack.Screen name="Espacios" component={EspaciosScreen} />
             <Stack.Screen name="Inventarios" component={InventariosPorEspacioScreen} options={{ headerShown: false, title: "Inventarios" }}/>
             <Stack.Screen name="Perfil" component={PerfilScreen} options={{ headerShown: false, title: "Perfil" }}/>
         </Stack.Navigator>

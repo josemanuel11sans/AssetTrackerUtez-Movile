@@ -28,21 +28,13 @@ export default function BottomTabNavigator() {
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#FFFFFF',
         tabBarStyle: {
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          right: 20,
-          elevation: 0,
           backgroundColor: '#133E87',
-          borderRadius: 25,
           height: 60,
-          marginHorizontal: 10,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.25,
           shadowRadius: 3.5,
           elevation: 5,
-          paddingHorizontal: 20, // Añade separación de los laterales
         },
         tabBarLabelStyle: {
           fontSize: 12,

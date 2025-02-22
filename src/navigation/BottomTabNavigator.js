@@ -4,7 +4,7 @@ import PerfilScreen from '../screens/PerfilScreen';
 import EdificiosScreen from '../screens/EdificiosScreen';
 import ScannerScreen from '../screens/ScannerScreen';
 import RegistroDeRecursosScreen from '../screens/RegistroDeRecursosScreen';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,17 +13,13 @@ export default function BottomTabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName;
           if (route.name === 'inventarios') {
-            iconName = 'inventory';
-            return <MaterialIcons name={iconName} size={size} color={color} />;
+            return <MaterialCommunityIcons name="clipboard-list" size={size} color={color} />;
           } else if (route.name === 'Profile') {
-            iconName = 'person';
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <Ionicons name="person" size={size} color={color} />;
           } else if (route.name === 'Scanner') {
-            iconName = 'barcode-outline';
-            return <Ionicons name={iconName} size={size} color={color} />;
-          } 
+            return <Ionicons name="barcode-outline" size={size} color={color} />;
+          }
         },
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#FFFFFF',

@@ -50,6 +50,7 @@ const EdificiosScreen = () => {
         numColumns={2}
         contentContainerStyle={styles.flatListContent}
         showsVerticalScrollIndicator={false}
+        style={styles.flatList}
       />
     </View>
   );
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     backgroundColor: '#D9D9D9',
-    paddingBottom: 80,
   },
   locationContainer: {
     flexDirection: 'row',
@@ -114,7 +114,11 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   flatListContent: {
-    paddingBottom: 80,
+    flexGrow: 1,
+  },
+  flatList: {
+    flex: 1,
+    height: '100%', // Asegura que el FlatList ocupe todo el espacio disponible en altura
   },
 });
 

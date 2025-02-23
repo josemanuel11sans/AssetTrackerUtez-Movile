@@ -4,7 +4,6 @@ import PerfilScreen from '../screens/PerfilScreen';
 import EdificiosScreen from '../screens/EdificiosScreen';
 import ScannerScreen from '../screens/ScannerScreen';
 import RegistroDeRecursosScreen from '../screens/RegistroDeRecursosScreen';
-import EspaciosScreen from '../screens/EspaciosScreen';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -13,16 +12,20 @@ export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
           if (route.name === 'inventarios') {
-            return <MaterialCommunityIcons name="clipboard-list" size={size} color={color} />;
+            iconName = 'clipboard-list';
+            return <MaterialCommunityIcons name={iconName} size={size} color={focused ? 'gray' : color} />;
           } else if (route.name === 'Profile') {
-            return <Ionicons name="person" size={size} color={color} />;
+            iconName = 'person';
+            return <Ionicons name={iconName} size={size} color={focused ? 'gray' : color} />;
           } else if (route.name === 'Scanner') {
-            return <Ionicons name="barcode-outline" size={size} color={color} />;
+            iconName = 'barcode-outline';
+            return <Ionicons name={iconName} size={size} color={focused ? 'gray' : color} />;
           }
         },
-        tabBarActiveTintColor: '#FFFFFF',
+        tabBarActiveTintColor: 'gray',
         tabBarInactiveTintColor: '#FFFFFF',
         tabBarStyle: {
           backgroundColor: '#133E87',
@@ -53,11 +56,6 @@ export default function BottomTabNavigator() {
         name="Profile"
         component={PerfilScreen}
         options={{ headerShown: false, title: 'Perfil' }}
-      />
-      <Tab.Screen
-        name="Espacios"
-        component={EspaciosScreen}
-        options={{ headerShown: false, title: 'Espacios', tabBarButton: () => null }}
       />
     </Tab.Navigator>
   );

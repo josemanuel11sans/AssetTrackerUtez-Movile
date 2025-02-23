@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CodigoRecuperacionScreen = () => {
-    const [email, setEmail] = useState('');
 
     return (
         <View style={styles.container}>
@@ -14,17 +13,10 @@ const CodigoRecuperacionScreen = () => {
             <Text style={styles.textInput}>Código:</Text>
             <View style={styles.inputContainer}>   
                 <MaterialCommunityIcons name="message" style={styles.icon} /> 
-                <TextInput 
-                style={styles.input}
-                    placeholder="example@utez.edu.mx" 
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
+                <TextInput style={styles.input} placeholder="Código" />
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('Screen')}>Enviar Código</Text>
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('#')}>Enviar Código</Text>
             </TouchableOpacity>
         </View>
     );

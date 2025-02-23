@@ -10,8 +10,8 @@ const InicioSesionScreen = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        if (email === 'admin@utez.edu.mx' && password === '12345678') {
-            navigation.replace('Scanner'); 
+        if (email === '2' && password === '1') {
+            navigation.navigate('Main'); // Cambia 'Edificios' a 'Main' para navegar al BottomTabNavigator
         } else {
             alert('Correo o contraseña incorrectos');
         }

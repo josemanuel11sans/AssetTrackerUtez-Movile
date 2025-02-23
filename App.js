@@ -7,9 +7,9 @@ import StackNavigator from './src/navigation/StackNavigator';
 export default function App() {
   return (
     <NavigationContainer>
-        <StackNavigator>
-          <BottomTabNavigator/>
-        </StackNavigator>
+      <StackNavigator>
+        <BottomTabNavigator/>
+      </StackNavigator>
     </NavigationContainer>
   );
 }

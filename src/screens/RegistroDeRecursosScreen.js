@@ -1,94 +1,122 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
+import recursos from '../data/recursos';
+import { useNavigation } from '@react-navigation/native';
 
-const RegistroDeRecursosScreen = () => {
-  const [category, setCategory] = useState('Inspector');
+export default function RegistroDeRecursosScreen() {
+  const navigation = useNavigation();
+  const [search, setSearch] = useState('');
+  const [filteredRecursos, setFilteredRecursos] = useState(recursos);
 
+  const handleSearch = (text) => {
+    setSearch(text);
+    if (text) {
+      const newData = recursos.filter(item => {
+        const itemData = item.nombre ? item.nombre.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredRecursos(newData);
+    } else {
+      setFilteredRecursos(recursos);
+    }
+  };
+
+  const handleCardPress = (item) => {
+    navigation.navigate('DetallesRecurso', { recurso: item });
+  };
+  const handleButtonPress = () => {
+    navigation.navigate('NuevoRecurso');
+  };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity 
+      style={styles.card} 
+       onPress={() => handleCardPress(item)}
+    >
+      <Text style={styles.cardText}>{item.codigo} - {item.nombre}</Text>
+    </TouchableOpacity>
+  );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.containerScroll}>
-        <View >
-          <View style={styles.locationContainer}>
-            <Text style={styles.locationText}>Inventario › Docencia 1 › Dirección › 17-01-2025</Text>
-          </View>
-
-          {/*<View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Ionicons name="eye" size={16} color="#FFF" />
-              <Text style={styles.buttonText}> Observaciones</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Ionicons name="add" size={16} color="#FFF" />
-              <Text style={styles.buttonText}> Ingresar código</Text>
-            </TouchableOpacity>
-          </View>*/}
-          <View style={styles.form}>
-          <Text style={styles.scanText}>Escanear código</Text>
-          <View style={styles.card}>
-            <Image source={require('../../assets/barcode.png')} style={styles.barcode} />
-          </View>
-          <Text style={styles.textInput}>Código</Text>
-          <TextInput style={styles.input} placeholder="Código" />
-          <Text style={styles.textInput}>Descripción</Text>
-          <TextInput style={styles.input} placeholder="Descripción" />
-          <Text style={styles.textInput}>Marca</Text>
-          <TextInput style={styles.input} placeholder="Marca" />
-          <Text style={styles.textInput}>Modelo</Text>
-          <TextInput style={styles.input} placeholder="Modelo" />
-          <Text style={styles.textInput}>Observaciones</Text>
-          <TextInput style={styles.input} placeholder="Observaciones" />
-          <Text style={styles.textInput}>Categoría de recurso</Text>
-          <Picker
-            selectedValue={category}
-            onValueChange={(itemValue) => setCategory(itemValue)}
-            style={styles.input}
-          >
-            <Picker.Item label="Silla" value="Silla" />
-            <Picker.Item label="Mesa" value="Mesa" />
-          </Picker>
-          <TouchableOpacity style={styles.registerButton}>
-            <Text style={styles.registerButtonText}>Registrar</Text>
-          </TouchableOpacity>
-          </View>
-        
+    <View style={styles.container}>
+      <View style={styles.locationContainer}>
+        <Text style={styles.locationText}>Inventario › Docencia 1 › Dirección › 17-01-2025</Text>
+      </View>
+      
+      <View style={styles.searchContainer}>
+        <View style={styles.searchBox}>
+          <Ionicons name="search" size={20} color="#133E87" style={styles.searchIcon} />
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Buscar recurso"
+            placeholderTextColor="#608BC1"
+            value={search}
+            onChangeText={text => handleSearch(text)}
+          />
         </View>
-      </ScrollView>
-    </SafeAreaView>
-
+        <TouchableOpacity style={styles.button} onPress={() => handleButtonPress()}>
+          <Ionicons name="add" size={18} color="#FFF" />
+          <Text style={styles.buttonText}> Nuevo</Text>
+        </TouchableOpacity>
+      </View>
+      
+      <FlatList
+        data={filteredRecursos}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+        contentContainerStyle={styles.flatListContent}
+        showsVerticalScrollIndicator={false}
+        style={styles.flatList}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: 40,
     backgroundColor: '#CBDCEB',
-    padding: 10,
-  },
-  containerScroll:{
-    paddingBottom: 60,
   },
   locationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     paddingHorizontal: 10,
     marginBottom: 20,
   },
   locationText: {
     fontSize: 16,
     color: '#133E87',
-    marginRight: 5,
-    alignSelf: 'flex-start'
   },
-  buttonContainer: {
+  searchContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    width: '100%',
+    paddingHorizontal: 10,
     marginBottom: 10,
+  },
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    marginRight: 10,
+    width: '60%'
+  },
+  searchIcon: {
+    marginRight: 5,
+  },
+  searchBar: {
+    flex: 1,
+    height: 40,
+    color: '#608BC1',
   },
   button: {
     flexDirection: 'row',
@@ -96,72 +124,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#133E87',
     padding: 10,
     borderRadius: 10,
+    alignContent: 'center',
+    width: '40%'
   },
   buttonText: {
     color: '#FFF',
     marginLeft: 5,
   },
-  scanText: {
-    color: '#133E87',
-    fontSize: 16,
-    marginBottom: 10,
-  },
   card: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#F5F5E5',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+    padding: 10,
+    margin: 10,
     borderRadius: 15,
-    marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
-  barcode: {
-    width: 200,
-    height: 100,
-    resizeMode: 'contain',
+  cardText: {
+    fontSize: 18,
+    color: '#608BC1',
+    fontWeight: '600',
   },
-  form:{
-    flex:1,
-    alignItems: 'center',
-    paddingTop: 0,
-    paddingLeft: 20,
-    paddingRight: 20
+  flatListContent: {
+    flexGrow: 1,
   },
-  input: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#FFFF',
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    color: '#637594',
-    shadowColor: '#000',
-    shadowOffset: { width: 2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4
-  },
-  textInput: {
-    color: '#133E87',
-    fontSize: 16,
-    textAlign: 'left',
-    alignSelf: 'flex-start',
-    margin: 5
-  },
-  registerButton: {
-    backgroundColor: '#133E87',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  registerButtonText: {
-    color: '#FFF',
-    fontSize: 16,
+  flatList: {
+    flex: 1,
   },
 });
-
-export default RegistroDeRecursosScreen;

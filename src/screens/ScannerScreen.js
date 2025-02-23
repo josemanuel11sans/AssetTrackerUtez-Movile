@@ -1,7 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import recursos from '../data/recursos';
+import { useNavigation } from '@react-navigation/native';
 
+const handleCardPress = (item, navigation) => {
+  navigation.navigate('DetallesRecurso', { recurso: item });
+};
 const ScannerScreen = () => {
+  const firstItem = recursos.length > 0 ? recursos[0] : null;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -10,7 +17,9 @@ const ScannerScreen = () => {
       <Text style={styles.instructionText}>
         Escanea el recurso, el código de barras se encuentra debajo del recurso.
       </Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}   onPress={() => handleCardPress(firstItem, navigation)}
+
+      >
         <Text style={styles.buttonText}>Mostrar información</Text>
       </TouchableOpacity>
     </View>

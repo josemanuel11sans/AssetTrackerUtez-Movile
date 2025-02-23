@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const RecuperarContrasenaScreen = () => {
+const CodigoRecuperacionScreen = () => {
     const [email, setEmail] = useState('');
-    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Image source={require('../../assets/email.png')} style={styles.imgEmail} />
+                <Image source={require('../../assets/code.png')} style={styles.imgCode} />
             </View>
-            {/* Formulario de correo */}
-            <Text style={styles.textInput}>Correo:</Text>
+            {/* Formulario de código de recuperación */}
+            <Text style={styles.textInput}>Código:</Text>
             <View style={styles.inputContainer}>   
-                <MaterialCommunityIcons name="email" style={styles.icon} /> 
+                <MaterialCommunityIcons name="message" style={styles.icon} /> 
                 <TextInput 
                 style={styles.input}
                     placeholder="example@utez.edu.mx" 
@@ -26,7 +24,7 @@ const RecuperarContrasenaScreen = () => {
                 />
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('CodigoRecuperacion')}>Enviar Código</Text>
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('Screen')}>Enviar Código</Text>
             </TouchableOpacity>
         </View>
     );
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    imgEmail: {
+    imgCode: {
         width: 300,
         height: 300,
         resizeMode: 'contain'
@@ -104,4 +102,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default RecuperarContrasenaScreen;
+export default CodigoRecuperacionScreen;

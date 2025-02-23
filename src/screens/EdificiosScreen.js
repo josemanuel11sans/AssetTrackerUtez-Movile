@@ -36,7 +36,7 @@ const EdificiosScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.locationContainer}>
-        <Text style={styles.locationText}>Ubicación Actual</Text>
+        <Text style={styles.locationText}>Edificios</Text>
         <Ionicons name="chevron-forward" size={20} color="#133E87" />
       </View>
       <View style={styles.searchContainer}>

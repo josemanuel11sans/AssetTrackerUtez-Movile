@@ -4,6 +4,7 @@ import PerfilScreen from '../screens/PerfilScreen';
 import EdificiosScreen from '../screens/EdificiosScreen';
 import ScannerScreen from '../screens/ScannerScreen';
 import RegistroDeRecursosScreen from '../screens/RegistroDeRecursosScreen';
+import EspaciosScreen from '../screens/EspaciosScreen';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -52,6 +53,11 @@ export default function BottomTabNavigator() {
         name="Profile"
         component={PerfilScreen}
         options={{ headerShown: false, title: 'Perfil' }}
+      />
+      <Tab.Screen
+        name="Espacios"
+        component={EspaciosScreen}
+        options={{ headerShown: false, title: 'Espacios', tabBarButton: () => null }}
       />
     </Tab.Navigator>
   );

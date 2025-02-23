@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TextInput } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import edificios from '../data/edificios';
 
 const EdificiosScreen = () => {
   const [search, setSearch] = useState('');
   const [filteredEdificios, setFilteredEdificios] = useState(edificios);
+  const navigation = useNavigation();
 
   const handleSearch = (text) => {
     setSearch(text);
@@ -21,10 +23,14 @@ const EdificiosScreen = () => {
     }
   };
 
+  const handleCardPress = (item) => {
+    navigation.navigate('Espacios', { edificio: item });
+  };
+
   const renderItem = ({ item }) => (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => handleCardPress(item)}>
       <Text style={styles.cardText}>{item.nombre}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

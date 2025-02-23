@@ -20,7 +20,7 @@ export default function StackNavigator() {
             <Stack.Screen name="Scanner" component={ScannerScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Recursos" component={RegistroDeRecursosScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Edificios" component={EdificiosScreen} options={{ headerShown: false, title: "Edificios" }}/>
-            <Stack.Screen name="Espacios" component={EspaciosScreen} />
+            <Stack.Screen name="Espacios" component={EspaciosScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Inventarios" component={InventariosPorEspacioScreen} options={{ headerShown: false, title: "Inventarios" }}/>
             <Stack.Screen name="Perfil" component={PerfilScreen} options={{ headerShown: false, title: "Perfil" }}/>
         </Stack.Navigator>

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import recursos from '../data/recursos';
+import { useNavigation } from '@react-navigation/native';
 
-export default function RegistroDeRecursosScreen({ navigation }) {
+export default function RegistroDeRecursosScreen() {
+  const navigation = useNavigation();
   const [search, setSearch] = useState('');
   const [filteredRecursos, setFilteredRecursos] = useState(recursos);
 
@@ -21,10 +23,17 @@ export default function RegistroDeRecursosScreen({ navigation }) {
     }
   };
 
+  const handleCardPress = (item) => {
+    navigation.navigate('DetallesRecurso', { recurso: item });
+  };
+  const handleButtonPress = () => {
+    navigation.navigate('NuevoRecurso');
+  };
+
   const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.card} 
-      onPress={() => navigation.navigate('HomeTab', { screen: 'DetallesRecurso', params: { product: item } })}
+       onPress={() => handleCardPress(item)}
     >
       <Text style={styles.cardText}>{item.codigo} - {item.nombre}</Text>
     </TouchableOpacity>
@@ -47,7 +56,7 @@ export default function RegistroDeRecursosScreen({ navigation }) {
             onChangeText={text => handleSearch(text)}
           />
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeTab', { screen: 'NuevoRecurso' })}>
+        <TouchableOpacity style={styles.button} onPress={() => handleButtonPress()}>
           <Ionicons name="add" size={18} color="#FFF" />
           <Text style={styles.buttonText}> Nuevo</Text>
         </TouchableOpacity>

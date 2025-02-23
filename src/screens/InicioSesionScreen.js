@@ -11,6 +11,8 @@ const InicioSesionScreen = () => {
 
     const handleLogin = () => {
         if (email === '2' && password === '1') {
+            // navigation.navigate('Main', { screen: 'HomeTab', params: { screen: 'Inventarios' } });
+            //navigation.navigate('Main', {screen: 'Edificios'});
             navigation.navigate('Main'); // Cambia 'Edificios' a 'Main' para navegar al BottomTabNavigator
         } else {
             alert('Correo o contraseña incorrectos');

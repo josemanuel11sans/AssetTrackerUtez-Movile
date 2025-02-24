@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CodigoRecuperacionScreen = () => {
+    const [code, setCode] = useState('');
     const navigation = useNavigation();
+
+    const handleCode = () => {
+        if (code === '1') {
+            navigation.navigate('#');
+        } else {
+            alert('Código incorrecto');
+        }
+    };
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -14,10 +23,10 @@ const CodigoRecuperacionScreen = () => {
             <Text style={styles.textInput}>Código:</Text>
             <View style={styles.inputContainer}>   
                 <MaterialCommunityIcons name="message" style={styles.icon} /> 
-                <TextInput style={styles.input} placeholder="Código" />
+                <TextInput style={styles.input} value={code} onChangeText={setCode} placeholder=". . . . ." />
             </View>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('#')}>Verificar Código</Text>
+            <TouchableOpacity style={styles.button} onPress={handleCode}>
+                <Text style={styles.buttonText}>Verificar Código</Text>
             </TouchableOpacity>
             {/* Links */}
             <View style={styles.buttonLink}>

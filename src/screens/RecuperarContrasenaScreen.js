@@ -25,8 +25,8 @@ const RecuperarContrasenaScreen = () => {
                     autoCapitalize="none"
                 />
             </View>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('CodigoRecuperacion')}>Enviar Código</Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CodigoRecuperacion')}>
+                <Text style={styles.buttonText}>Enviar Código</Text>
             </TouchableOpacity>
         </View>
     );

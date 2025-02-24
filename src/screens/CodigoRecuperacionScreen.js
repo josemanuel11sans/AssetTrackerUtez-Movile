@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CodigoRecuperacionScreen = () => {
-
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -16,8 +17,15 @@ const CodigoRecuperacionScreen = () => {
                 <TextInput style={styles.input} placeholder="Código" />
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('#')}>Enviar Código</Text>
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('#')}>Verificar Código</Text>
             </TouchableOpacity>
+            {/* Links */}
+            <View style={styles.buttonLink}>
+                <TouchableOpacity onPress={() => navigation.navigate('RecuperarContrasena')}>
+                    <Text style={styles.linkText}>¿No recibiste el código?</Text>
+                    <Text style={styles.linkText}>Volver a enviar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -91,7 +99,18 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFF',
         marginLeft: 5,
-    }
+    },
+    buttonLink: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
+    },
+    linkText: {
+        color: '#133E87',
+        fontSize: 14,
+        textAlign: 'center'
+    },
 });
 
 export default CodigoRecuperacionScreen;

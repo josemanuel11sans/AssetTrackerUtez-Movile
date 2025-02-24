@@ -12,6 +12,7 @@ import RecuperarContrasenaScreen from "../screens/RecuperarContrasenaScreen";
 import CodigoRecuperacionScreen from "../screens/CodigoRecuperacionScreen";
 import DetallesRecursoScreen from "../screens/DetallesRecursoScreen";
 import NuevoRecursoScreen from "../screens/NuevoRecursoScreen";
+import CambioContrasenaScreen from '../screens/CambioContrasena';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function StackNavigator() {
             <Stack.Screen name="Edificios" component={EdificiosScreen} options={{ headerShown: false, title: "Edificios" }}/>
             <Stack.Screen name="RecuperarContrasena" component={RecuperarContrasenaScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CodigoRecuperacion" component={CodigoRecuperacionScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="CambioContrasena" component={CambioContrasenaScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Scanner" component={ScannerScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Recursos" component={RegistroDeRecursosScreen} options={{ headerShown: false }} />
             

@@ -9,7 +9,7 @@ const CodigoRecuperacionScreen = () => {
 
     const handleCode = () => {
         if (code === '1') {
-            navigation.navigate('#');
+            navigation.navigate('CambioContrasena');
         } else {
             alert('Código incorrecto');
         }

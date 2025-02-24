@@ -65,29 +65,33 @@ const EdificiosScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 20, // Reducido el padding top
     backgroundColor: '#CBDCEB',
   },
   locationContainer: {
+    marginTop: 15, // Añadido margen superior
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 10, // Reducido el margen inferior
   },
   locationText: {
-    fontSize: 16,
+
+    fontSize: 20,
     color: '#133E87',
-    marginRight: 5,
+    marginRight: 2,
+    marginLeft: 10, // Añadido margen izquierdo
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 15, // Cambiado a 15
     backgroundColor: '#fff',
     paddingHorizontal: 10,
-    margin: 10,
+    marginHorizontal: 10, // Añadido margen horizontal
+    marginBottom: 20, // Añadido margen inferior
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

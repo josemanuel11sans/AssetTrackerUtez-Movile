@@ -11,9 +11,7 @@ const InicioSesionScreen = () => {
 
     const handleLogin = () => {
         if (email === '2' && password === '1') {
-            // navigation.navigate('Main', { screen: 'HomeTab', params: { screen: 'Inventarios' } });
-            //navigation.navigate('Main', {screen: 'Edificios'});
-            navigation.navigate('Main'); // Cambia 'Edificios' a 'Main' para navegar al BottomTabNavigator
+            navigation.navigate('Main');
         } else {
             alert('Correo o contraseña incorrectos');
         }
@@ -24,13 +22,12 @@ const InicioSesionScreen = () => {
             <View style={styles.card}>
                 <Image source={require('../../assets/login.png')} style={styles.imgLogin} />
             </View>
-            {/* Formulario de inicio de sesión */}
             <Text style={styles.textInput}>Correo:</Text>
-            <View style={styles.inputContainer}>   
-                <Ionicons name="person" style={styles.icon} /> 
-                <TextInput 
-                style={styles.input}
-                    placeholder="example@utez.edu.mx" 
+            <View style={styles.inputContainer}>
+                <Ionicons name="person" style={styles.icon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="example@utez.edu.mx"
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
@@ -38,30 +35,29 @@ const InicioSesionScreen = () => {
                 />
             </View>
             <Text style={styles.textInput}>Contraseña:</Text>
-            <View style={styles.inputContainer}> 
-                <Ionicons name="lock-closed" style={styles.icon} /> 
-                <TextInput 
-                style={styles.input}
-                    placeholder=". . . . . . . ." 
+            <View style={styles.inputContainer}>
+                <Ionicons name="lock-closed" style={styles.icon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder=". . . . . . . ."
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}
                 />
-                <TouchableOpacity  onPress={() => setShowPassword(!showPassword)}>
-                    <Ionicons style={styles.icon} name={showPassword ? "eye" : "eye-off"}/>
+                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                    <Ionicons style={styles.icon} name={showPassword ? "eye" : "eye-off"} />
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
                 <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
-            {/* Links */}
             <View style={styles.buttonLink}>
                 <TouchableOpacity>
-                    <Text style={styles.linkText} onPress={() => navigation.navigate('Registro')} >Crear cuenta</Text>
+                    <Text style={styles.linkText} onPress={() => navigation.navigate('Registro')}>Crear cuenta</Text>
                 </TouchableOpacity>
                 <View style={styles.separator} />
                 <TouchableOpacity>
-                    <Text style={styles.linkText} onPress={() => navigation.navigate('RecuperarContrasena')} >¿Olvidaste tu contraseña?</Text>
+                    <Text style={styles.linkText} onPress={() => navigation.navigate('RecuperarContrasena')}>¿Olvidaste tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -76,8 +72,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#CBDCEB',
         padding: 20
     },
-    form: { 
-        width: '80%' 
+    form: {
+        width: '80%'
     },
     card: {
         width: 300,
@@ -94,9 +90,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
-        borderRadius: 10,
+        borderRadius: 15, // Cambiado a 15
         paddingHorizontal: 10,
-        width: '80%',
+        width: '90%',
         height: 50,
         marginBottom: 10,
         shadowColor: '#000',
@@ -120,7 +116,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 25,
-        color: "#637594",
+        color: "#133E87", // Cambiado a #133E87
         marginRight: 10
     },
     button: {
@@ -131,7 +127,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#133E87',
         padding: 10,
         borderRadius: 10,
-        width: '80%',
+        width: '90%',
         shadowColor: '#000',
         shadowOffset: { width: 2, height: 4 },
         shadowOpacity: 0.2,

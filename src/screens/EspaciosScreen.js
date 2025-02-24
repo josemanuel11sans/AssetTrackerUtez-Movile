@@ -35,7 +35,7 @@ export default function EspaciosScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <Text style={styles.title} onPress={() => navigation.goBack()}>Edificios</Text>
+        <Text style={styles.title} onPress={() => navigation.goBack()}>Edificios</Text>
         <Ionicons name="chevron-back" size={24} color="#133E87"  />
         <Text style={styles.title}>{edificio.nombre}</Text>
       </View>
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   title: {
+    marginRight: 2,
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#133E87',
     marginLeft: 10,
   },

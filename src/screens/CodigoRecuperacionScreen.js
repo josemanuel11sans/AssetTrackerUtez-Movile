@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CodigoRecuperacionScreen = () => {
+    const [code, setCode] = useState('');
+    const navigation = useNavigation();
 
+    const handleCode = () => {
+        if (code === '1') {
+            navigation.navigate('#');
+        } else {
+            alert('Código incorrecto');
+        }
+    };
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -13,11 +23,18 @@ const CodigoRecuperacionScreen = () => {
             <Text style={styles.textInput}>Código:</Text>
             <View style={styles.inputContainer}>   
                 <MaterialCommunityIcons name="message" style={styles.icon} /> 
-                <TextInput style={styles.input} placeholder="Código" />
+                <TextInput style={styles.input} value={code} onChangeText={setCode} placeholder=". . . . ." />
             </View>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('#')}>Enviar Código</Text>
+            <TouchableOpacity style={styles.button} onPress={handleCode}>
+                <Text style={styles.buttonText}>Verificar Código</Text>
             </TouchableOpacity>
+            {/* Links */}
+            <View style={styles.buttonLink}>
+                <TouchableOpacity onPress={() => navigation.navigate('RecuperarContrasena')}>
+                    <Text style={styles.linkText}>¿No recibiste el código?</Text>
+                    <Text style={styles.linkText}>Volver a enviar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -91,7 +108,18 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFF',
         marginLeft: 5,
-    }
+    },
+    buttonLink: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
+    },
+    linkText: {
+        color: '#133E87',
+        fontSize: 14,
+        textAlign: 'center'
+    },
 });
 
 export default CodigoRecuperacionScreen;

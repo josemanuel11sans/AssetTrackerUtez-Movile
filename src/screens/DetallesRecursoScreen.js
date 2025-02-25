@@ -33,10 +33,6 @@ export default function DetallesRecursoScreen({ route, navigation }) {
         </View>
 
       </View>
-
-      <TouchableOpacity style={styles.button} onPress={() => alert('Información mostrada')}>
-        <Text style={styles.buttonText}>Mostrar información</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

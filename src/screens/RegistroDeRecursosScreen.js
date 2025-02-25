@@ -42,7 +42,7 @@ export default function RegistroDeRecursosScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.locationContainer}>
-        <Text style={styles.locationText}>Inventario › Docencia 1 › Dirección › 17-01-2025</Text>
+        <Text style={styles.locationText} onPress={() => navigation.goBack()}>Inventario › Docencia 1 › Dirección › 17-01-2025</Text>
       </View>
       
       <View style={styles.searchContainer}>

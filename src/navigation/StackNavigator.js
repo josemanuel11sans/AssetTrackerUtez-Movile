@@ -13,7 +13,6 @@ import CodigoRecuperacionScreen from "../screens/CodigoRecuperacionScreen";
 import DetallesRecursoScreen from "../screens/DetallesRecursoScreen";
 import NuevoRecursoScreen from "../screens/NuevoRecursoScreen";
 import CambioContrasenaScreen from '../screens/CambioContrasena';
-import RegistroScreen from '../screens/RegistroScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +32,8 @@ export default function StackNavigator() {
             <Stack.Screen name="Inventarios" component={InventariosPorEspacioScreen} options={{ headerShown: false, title: "Inventarios" }}/>
             <Stack.Screen name="Perfil" component={PerfilScreen} options={{ headerShown: false, title: "Perfil" }}/>
             <Stack.Screen name="NuevoRecurso" component={NuevoRecursoScreen} options={{ headerShown: false, title: "NuevoRecurso" }} />
-            <Stack.Screen name="DetallesRecurso" component={DetallesRecursoScreen} options={{ headerShown: false, title: "DetallesRecurso" }} />
+            <Stack.Screen name="DetallesRecurso" component={DetallesRecursoScreen} options={{ headerShown: true, title: "DetallesRecurso" }} />
+            <Stack.Screen name="InventariosScreen" component={InventariosScreen} options={{ headerShown: false, title: "DetallesRecurso" }} />
         </Stack.Navigator>
     );
 }

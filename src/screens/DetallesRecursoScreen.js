@@ -1,38 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function DetallesRecursoScreen({ route, navigation }) {
   const { recurso } = route.params;
+  const [searchText, setSearchText] = useState('');
+  const [filteredResources, setFilteredResources] = useState(recurso.recursos || []);
+
+  const handleSearch = (text) => {
+    setSearchText(text);
+    const filtered = recurso.recursos.filter((item) =>
+      item.codigo.toLowerCase().includes(text.toLowerCase()) ||
+      item.descripcion.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredResources(filtered);
+  };
+
+  const renderResourceItem = ({ item }) => (
+    <View style={styles.card}>
+      <Text style={styles.cardText}>Código: {item.codigo}</Text>
+      <Text style={styles.cardText}>Descripción: {item.descripcion}</Text>
+      <Text style={styles.cardText}>Marca: {item.marca}</Text>
+      <Text style={styles.cardText}>Modelo: {item.modelo}</Text>
+      <Text style={styles.cardText}>N° Serie: {item.nSerie}</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.imgContainer}>
-          <Image source={recurso.image} style={styles.productImg} />
-        </View>
-        <View style={styles.datosContainer}>
-          <Text style={styles.codigo}>{recurso.codigo}</Text>
-          <Text style={styles.ubicacion}>{recurso.ubicacion.edificio} - {recurso.ubicacion.espacios}</Text>
-
-          <Text style={styles.label}>
-            <Text style={styles.bold}>Observaciones: </Text> {recurso.observaciones}
-          </Text>
-          <Text style={styles.label}>
-            <Text style={styles.bold}>Marca: </Text> {recurso.marca}
-          </Text>
-          <Text style={styles.label}>
-            <Text style={styles.bold}>Modelo: </Text> {recurso.modelo}
-          </Text>
-          <Text style={styles.label}>
-            <Text style={styles.bold}>Categoría: </Text> {recurso.categoria}
-          </Text>
-          <Text style={styles.label}>
-            <Text style={styles.bold}>Responsable: </Text> {recurso.responsable}
-          </Text>
-        </View>
-
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={24} color="#133E87" />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Detalles del Recurso</Text>
       </View>
+
+      <TouchableOpacity style={styles.button} onPress={() => alert('Información mostrada')}>
+        <Text style={styles.buttonText}>Mostrar información</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -40,72 +46,66 @@ export default function DetallesRecursoScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#BFD7EA',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#CBDCEB',
     padding: 20,
   },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 5,
+  header: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 20,
+  },
+  headerText: {
+    fontSize: 20,
+    color: '#133E87',
+    marginLeft: 10,
+    fontWeight: 'bold',
+  },
+  searchBar: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+  listContainer: {
+    flexGrow: 1,
+  },
+  card: {
+    flex: 1,
+    backgroundColor: '#f9f9f9',
+    padding: 15,
+    margin: 10,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
-    width: '90%',
+    maxWidth: '45%',
   },
-  datosContainer:{
-    alignItems: 'flex-start',
-    alignContent: 'center'
-  },
-  imgContainer: {
-    backgroundColor: '#f3f3f3',
-    height: 180,
-    width: 230,
-    alignItems: 'center',
-    alignContent: 'center',
-    padding: 10
-  },
-  productImg: {
-    width: 200,
-    height: 150,
-    resizeMode: 'contain',
-  },
-  codigo: {
+  cardText: {
     fontSize: 14,
-    fontWeight: '400',
-    color: '#1E1E1E',
-  },
-  ubicacion: {
-    fontSize: 16,
-    fontWeight: 'bold',
     color: '#333',
-    margin: 3
   },
-  label: {
-    fontSize: 14,
-    color: '#757575',
-    marginVertical: 2,
-  },
-  bold: {
-    fontWeight: 'bold',
-    color: '#757575',
-  },
-  button: {
+  noResults: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#333',
     marginTop: 20,
-    backgroundColor: '#133E87',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    alignItems: 'center',
-    width: '80%',
   },
-  buttonText: {
-    color: '#FFF',
+  addButton: {
+    flexDirection: 'row',
+    backgroundColor: '#133E87',
+    padding: 15,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  addButtonText: {
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
 });

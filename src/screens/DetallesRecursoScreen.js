@@ -36,28 +36,8 @@ export default function DetallesRecursoScreen({ route, navigation }) {
         <Text style={styles.headerText}>Detalles del Recurso</Text>
       </View>
 
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Buscar recurso..."
-        value={searchText}
-        onChangeText={handleSearch}
-      />
-
-      {filteredResources.length > 0 ? (
-        <FlatList
-          data={filteredResources}
-          renderItem={renderResourceItem}
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={2}
-          contentContainerStyle={styles.listContainer}
-        />
-      ) : (
-        <Text style={styles.noResults}>No hay recursos disponibles</Text>
-      )}
-
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AgregarRecursoScreen')}>
-        <Ionicons name="add" size={24} color="#fff" />
-        <Text style={styles.addButtonText}>Agregar Recurso</Text>
+      <TouchableOpacity style={styles.button} onPress={() => alert('Información mostrada')}>
+        <Text style={styles.buttonText}>Mostrar información</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

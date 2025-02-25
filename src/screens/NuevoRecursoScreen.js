@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 
 const NuevoRecursoScreen = () => {
-  const [category, setCategory] = useState('Silla');
+  const [category, setCategory] = useState('Inspector');
 
 
   return (

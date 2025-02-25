@@ -21,6 +21,7 @@ import InicioSesionScreen from './src/screens/InicioSesionScreen';
 import CodigoRecuperacionScreen from './src/screens/CodigoRecuperacionScreen';
 import RecuperarContrasenaScreen from './src/screens/RecuperarContrasenaScreen';
 import CambioContrasenaScreen from './src/screens/CambioContrasena';
+import RegistroScreen from './src/screens/RegistroScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,11 @@ export default function App() {
         <Stack.Screen
           name="CambioContrasena"
           component={CambioContrasenaScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Registro"
+          component={RegistroScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

@@ -13,7 +13,6 @@ import CodigoRecuperacionScreen from "../screens/CodigoRecuperacionScreen";
 import DetallesRecursoScreen from "../screens/DetallesRecursoScreen";
 import NuevoRecursoScreen from "../screens/NuevoRecursoScreen";
 import CambioContrasenaScreen from '../screens/CambioContrasena';
-import InventariosScreen from '../screens/InventariosScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,9 +25,9 @@ export default function StackNavigator() {
             <Stack.Screen name="RecuperarContrasena" component={RecuperarContrasenaScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CodigoRecuperacion" component={CodigoRecuperacionScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CambioContrasena" component={CambioContrasenaScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Registro" component={RegistroScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Scanner" component={ScannerScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Recursos" component={RegistroDeRecursosScreen} options={{ headerShown: false }} />
-            
             <Stack.Screen name="Espacios" component={EspaciosScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Inventarios" component={InventariosPorEspacioScreen} options={{ headerShown: false, title: "Inventarios" }}/>
             <Stack.Screen name="Perfil" component={PerfilScreen} options={{ headerShown: false, title: "Perfil" }}/>

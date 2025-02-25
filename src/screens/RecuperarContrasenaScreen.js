@@ -14,11 +14,11 @@ const RecuperarContrasenaScreen = () => {
             </View>
             {/* Formulario de correo */}
             <Text style={styles.textInput}>Correo:</Text>
-            <View style={styles.inputContainer}>   
-                <MaterialCommunityIcons name="email" style={styles.icon} /> 
-                <TextInput 
-                style={styles.input}
-                    placeholder="example@utez.edu.mx" 
+            <View style={styles.inputContainer}>
+                <MaterialCommunityIcons name="email" style={styles.icon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="example@utez.edu.mx"
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
@@ -27,6 +27,9 @@ const RecuperarContrasenaScreen = () => {
             </View>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CodigoRecuperacion')}>
                 <Text style={styles.buttonText}>Enviar Código</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.linkText} onPress={() => navigation.navigate('Login')}>Volver...</Text>
             </TouchableOpacity>
         </View>
     );
@@ -101,7 +104,17 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFF',
         marginLeft: 5,
-    }
+    },
+    buttonLink: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
+    },
+    linkText: {
+        color: '#133E87',
+        fontSize: 14
+    },
 });
 
 export default RecuperarContrasenaScreen;
